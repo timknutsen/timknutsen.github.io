@@ -36,6 +36,11 @@ a:hover {
   color: var(--accent);
 }
 
+a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
 .page {
   width: min(1160px, calc(100% - 56px));
   margin: 0 auto;
