@@ -1,0 +1,39 @@
+{
+  "author": "Tim Martin Knutsen",
+  "scholar": "https://scholar.google.com/scholar?q=Tim+Martin+Knutsen",
+  "note": "A selected, manually maintained list. See the Google Scholar link for the fuller, current record.",
+  "publications": [
+    {
+      "authors": ["Brekke, C.", "Johnston, S. E.", "Knutsen, T. M.", "Berg, P."],
+      "year": 2023,
+      "title": "Genetic architecture of individual meiotic crossover rate and distribution in Atlantic Salmon",
+      "venue": "Scientific Reports",
+      "doi": "10.1038/s41598-023-47208-3",
+      "url": "https://doi.org/10.1038/s41598-023-47208-3"
+    },
+    {
+      "authors": ["Brekke, C.", "Knutsen, T. M."],
+      "year": 2026,
+      "title": "Phenotypic sex determines recombination rate and distribution in sex-reversed rainbow trout",
+      "venue": "Aquaculture",
+      "doi": "10.1016/j.aquaculture.2025.743143",
+      "url": "https://doi.org/10.1016/j.aquaculture.2025.743143"
+    },
+    {
+      "authors": ["Knutsen, T. M.", "Olsen, H. G.", "Ketto, I. A.", "Sundsaasen, K. K.", "Kohler, A.", "Tafintseva, V.", "Svendsen, M.", "Kent, M. P.", "Lien, S."],
+      "year": 2022,
+      "title": "Genetic variants associated with two major bovine milk fatty acids offer opportunities to breed for altered milk fat composition",
+      "venue": "Genetics Selection Evolution",
+      "doi": "10.1186/s12711-022-00731-9",
+      "url": "https://doi.org/10.1186/s12711-022-00731-9"
+    },
+    {
+      "authors": ["Langille, B. L.", "Kess, T.", "Nugent, C. M.", "Messmer, A.", "Duffy, S. J.", "Knutsen, T. M.", "Kent, M.", "Boyce, D.", "Gregory, R. S.", "Gauthier, J.", "Fairchild, E. A.", "Pietrak, M.", "Garcia de Leaniz, C.", "Consuegra, S.", "Whittaker, B.", "Bentzen, P.", "Bradbury, I. R."],
+      "year": 2024,
+      "title": "Trans-Atlantic genomic differentiation and parallel environmental and allelic variation in lumpfish",
+      "venue": "ICES Journal of Marine Science",
+      "doi": "10.1093/icesjms/fsae057",
+      "url": "https://doi.org/10.1093/icesjms/fsae057"
+    }
+  ]
+}
