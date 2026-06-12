@@ -4,6 +4,14 @@
   "note": "A selected, manually maintained list. See the Google Scholar link for the fuller, current record.",
   "publications": [
     {
+      "authors": ["Nguyen, D. T.", "Knutsen, T. M.", "Sandve, S. R.", "Lien, S.", "Grønvold, L."],
+      "year": 2025,
+      "title": "Sequence-based chromatin activity modeling and regulatory impact prediction of genetic variants in farmed animals using deep learning",
+      "venue": "NAR Genomics and Bioinformatics",
+      "doi": "10.1093/nargab/lqaf139",
+      "url": "https://doi.org/10.1093/nargab/lqaf139"
+    },
+    {
       "authors": ["Brekke, C.", "Johnston, S. E.", "Knutsen, T. M.", "Berg, P."],
       "year": 2023,
       "title": "Genetic architecture of individual meiotic crossover rate and distribution in Atlantic Salmon",
