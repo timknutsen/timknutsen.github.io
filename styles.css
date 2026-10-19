@@ -246,3 +246,7 @@ footer p {
     gap: 8px;
   }
 }
+
+.interest-list + p {
+  margin-top: 1.25rem;
+}
