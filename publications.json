@@ -1,47 +1,107 @@
 {
   "author": "Tim Martin Knutsen",
+  "orcid": null,
   "scholar": "https://scholar.google.com/scholar?q=Tim+Martin+Knutsen",
-  "note": "A selected, manually maintained list. See the Google Scholar link for the fuller, current record.",
+  "note": "Peer-reviewed articles found in PubMed and Crossref, October 2026. Manually maintained; mirrors the list on timknutsen.no.",
   "publications": [
     {
-      "authors": ["Nguyen, D. T.", "Knutsen, T. M.", "Sandve, S. R.", "Lien, S.", "Grønvold, L."],
+      "authors": ["Brekke C", "Knutsen TM"],
+      "year": 2026,
+      "title": "Phenotypic sex determines recombination rate and distribution in sex-reversed rainbow trout (Oncorhynchus mykiss)",
+      "venue": "Aquaculture",
+      "doi": "10.1016/j.aquaculture.2025.743143"
+    },
+    {
+      "authors": ["Nguyen DT", "Knutsen TM", "Sandve SR", "Lien S", "Grønvold L"],
       "year": 2025,
       "title": "Sequence-based chromatin activity modeling and regulatory impact prediction of genetic variants in farmed animals using deep learning",
-      "venue": "NAR Genomics and Bioinformatics",
-      "doi": "10.1093/nargab/lqaf139",
-      "url": "https://doi.org/10.1093/nargab/lqaf139"
+      "venue": "NAR Genomics and Bioinformatics 7(4): lqaf139",
+      "doi": "10.1093/nargab/lqaf139"
     },
     {
-      "authors": ["Brekke, C.", "Johnston, S. E.", "Knutsen, T. M.", "Berg, P."],
+      "authors": ["Manousi D", "Jaskula DM", "Grammes F", "Knutsen TM", "Naseer S", "Martin SA", "Moen T", "Saitou M", "Lien S"],
+      "year": 2025,
+      "title": "Dissecting the genetic basis of response to salmonid alphavirus in Atlantic salmon",
+      "venue": "BMC Genomics 26: 657",
+      "doi": "10.1186/s12864-025-11735-2"
+    },
+    {
+      "authors": ["Langille BL", "Kess T", "Nugent CM", "Messmer A", "Duffy SJ", "Knutsen TM", "Kent M", "Boyce D", "Gregory RS", "Gauthier J", "Fairchild EA", "Pietrak M", "Garcia de Leaniz C", "Consuegra S", "Whittaker B", "Bentzen P", "Bradbury IR"],
+      "year": 2024,
+      "title": "Trans-Atlantic genomic differentiation and parallel environmental and allelic variation in lumpfish (Cyclopterus lumpus)",
+      "venue": "ICES Journal of Marine Science 81(6): 1025",
+      "doi": "10.1093/icesjms/fsae057"
+    },
+    {
+      "authors": ["Brekke C", "Johnston SE", "Knutsen TM", "Berg P"],
       "year": 2023,
-      "title": "Genetic architecture of individual meiotic crossover rate and distribution in Atlantic Salmon",
-      "venue": "Scientific Reports",
-      "doi": "10.1038/s41598-023-47208-3",
-      "url": "https://doi.org/10.1038/s41598-023-47208-3"
+      "title": "Genetic architecture of individual meiotic crossover rate and distribution in Atlantic salmon",
+      "venue": "Scientific Reports 13: 20481",
+      "doi": "10.1038/s41598-023-47208-3"
     },
     {
-      "authors": ["Brekke, C.", "Knutsen, T. M."],
-      "year": 2026,
-      "title": "Phenotypic sex determines recombination rate and distribution in sex-reversed rainbow trout",
-      "venue": "Aquaculture",
-      "doi": "10.1016/j.aquaculture.2025.743143",
-      "url": "https://doi.org/10.1016/j.aquaculture.2025.743143"
+      "authors": ["Langille BL", "Kess T", "Brachmann M", "Nugent CM", "Messmer A", "Duffy SJ", "Holborn MK", "Van Wyngaarden M", "Knutsen TM", "Kent M", "Boyce D", "Gregory RS", "Gauthier J", "Fairchild EA", "Pietrak M", "Eddy S", "de Leaniz CG", "Consuegra S", "Whittaker B", "Bentzen P", "Bradbury IR"],
+      "year": 2023,
+      "title": "Fine-scale environmentally associated spatial structure of lumpfish (Cyclopterus lumpus) across the Northwest Atlantic",
+      "venue": "Evolutionary Applications 16(9): 1619-1636",
+      "doi": "10.1111/eva.13590"
     },
     {
-      "authors": ["Knutsen, T. M.", "Olsen, H. G.", "Ketto, I. A.", "Sundsaasen, K. K.", "Kohler, A.", "Tafintseva, V.", "Svendsen, M.", "Kent, M. P.", "Lien, S."],
+      "authors": ["Knutsen TM", "Olsen HG", "Ketto IA", "Sundsaasen KK", "Kohler A", "Tafintseva V", "Svendsen M", "Kent MP", "Lien S"],
       "year": 2022,
       "title": "Genetic variants associated with two major bovine milk fatty acids offer opportunities to breed for altered milk fat composition",
-      "venue": "Genetics Selection Evolution",
-      "doi": "10.1186/s12711-022-00731-9",
-      "url": "https://doi.org/10.1186/s12711-022-00731-9"
+      "venue": "Genetics Selection Evolution 54: 35",
+      "doi": "10.1186/s12711-022-00731-9"
     },
     {
-      "authors": ["Langille, B. L.", "Kess, T.", "Nugent, C. M.", "Messmer, A.", "Duffy, S. J.", "Knutsen, T. M.", "Kent, M.", "Boyce, D.", "Gregory, R. S.", "Gauthier, J.", "Fairchild, E. A.", "Pietrak, M.", "Garcia de Leaniz, C.", "Consuegra, S.", "Whittaker, B.", "Bentzen, P.", "Bradbury, I. R."],
-      "year": 2024,
-      "title": "Trans-Atlantic genomic differentiation and parallel environmental and allelic variation in lumpfish",
-      "venue": "ICES Journal of Marine Science",
-      "doi": "10.1093/icesjms/fsae057",
-      "url": "https://doi.org/10.1093/icesjms/fsae057"
+      "authors": ["Holborn MK", "Einfeldt AL", "Kess T", "Duffy SJ", "Messmer AM", "Langille BL", "Brachmann MK", "Gauthier J", "Bentzen P", "Knutsen TM", "Kent M", "Boyce D", "Bradbury IR"],
+      "year": 2022,
+      "title": "Reference genome of lumpfish Cyclopterus lumpus Linnaeus provides evidence of male heterogametic sex determination through the AMH pathway",
+      "venue": "Molecular Ecology Resources 22(4): 1427-1439",
+      "doi": "10.1111/1755-0998.13565"
+    },
+    {
+      "authors": ["Eggestøl HØ", "Lunde HS", "Knutsen TM", "Haugland GT"],
+      "year": 2020,
+      "title": "Interleukin-1 ligands and receptors in lumpfish (Cyclopterus lumpus L.): molecular characterization, phylogeny, gene expression, and transcriptome analyses",
+      "venue": "Frontiers in Immunology 11: 502",
+      "doi": "10.3389/fimmu.2020.00502"
+    },
+    {
+      "authors": ["Knutsen TM", "Olsen HG", "Tafintseva V", "Svendsen M", "Kohler A", "Kent MP", "Lien S"],
+      "year": 2018,
+      "title": "Unravelling genetic variation underlying de novo-synthesis of bovine milk fatty acids",
+      "venue": "Scientific Reports 8: 2179",
+      "doi": "10.1038/s41598-018-20476-0"
+    },
+    {
+      "authors": ["Olsen HG", "Knutsen TM", "Kohler A", "Svendsen M", "Gidskehaug L", "Grove H", "Nome T", "Sodeland M", "Sundsaasen KK", "Kent MP", "Martens H", "Lien S"],
+      "year": 2017,
+      "title": "Genome-wide association mapping for milk fat composition and fine mapping of a QTL for de novo synthesis of milk fatty acids on bovine chromosome 13",
+      "venue": "Genetics Selection Evolution 49: 20",
+      "doi": "10.1186/s12711-017-0294-5"
+    },
+    {
+      "authors": ["Olsen HG", "Knutsen TM", "Lewandowska-Sabat AM", "Grove H", "Nome T", "Svendsen M", "Arnyasi M", "Sodeland M", "Sundsaasen KK", "Dahl SR", "Heringstad B", "Hansen HH", "Olsaker I", "Kent MP", "Lien S"],
+      "year": 2016,
+      "title": "Fine mapping of a QTL on bovine chromosome 6 using imputed full sequence data suggests a key role for the group-specific component (GC) gene in clinical mastitis and milk production",
+      "venue": "Genetics Selection Evolution 48: 79",
+      "doi": "10.1186/s12711-016-0257-2"
     }
-  ]
+  ],
+  "datasets": [
+    {
+      "authors": ["Knutsen TM", "Kirubakaran TG", "Mommens M", "Moen T"],
+      "year": 2018,
+      "title": "Lumpfish (Cyclopterus lumpus) draft genome assembly",
+      "venue": "Figshare",
+      "doi": "10.6084/m9.figshare.7301546"
+    }
+  ],
+  "thesis": {
+    "year": 2018,
+    "title": "Genomics of bovine milk fat composition",
+    "institution": "Norwegian University of Life Sciences",
+    "url": "https://hdl.handle.net/11250/2648419"
+  }
 }

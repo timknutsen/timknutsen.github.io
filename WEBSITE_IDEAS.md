@@ -84,6 +84,8 @@ Open questions:
 | 2026-10-19 | Keep the Geno bull catalogue demo off the public site. | Built on Geno's data and images. |
 | 2026-10-19 | No AquaGen case studies; AI section kept general. Tools list = most recently updated public repos. | Specific AquaGen examples revealed too much internal work. |
 | 2026-10-19 | Do not link ukeoppgaver. | Household app; may show family members' names. |
+| 2026-10-19 | Redesign as a full CV page: simulated salmon Manhattan plot as hero, Schibsted Grotesk, cool fjord palette with light and dark modes, year rail for work and publications. | Tim asked for a redesign and an expanded CV ahead of job applications. |
+| 2026-10-19 | Publication list expanded to all 12 peer-reviewed articles found in PubMed and Crossref, plus the 2018 lumpfish genome dataset and talks. Earlier roles (Geno consultant, bioengineer at Lovisenberg) from kyst.no/iLaks 2017 and the NMBU interview. | Every CV line traces to a public source. |
 
 ## Committed Changes
 
