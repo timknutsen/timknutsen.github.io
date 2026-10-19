@@ -1,7 +1,8 @@
 # timknutsen.github.io
 
-Personal website for Tim Martin Knutsen, served via GitHub Pages at
-<https://timknutsen.github.io/>.
+Personal website for Tim Martin Knutsen, live at <https://timknutsen.no/>.
+Hosted on GitHub Pages; the custom domain is set in the repo's Pages settings
+(deployed via Actions, so no CNAME file is needed).
 
 It is a plain static site: no framework, no build step, no Jekyll, npm, or
 server-side dependencies. Just hand-written HTML, CSS, and static assets.
