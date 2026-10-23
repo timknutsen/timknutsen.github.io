@@ -166,25 +166,23 @@ h1 {
   color: var(--slate);
 }
 
-.plot {
+.ridge {
   margin: 2.75rem 0 0;
 }
 
-.plot svg {
+.ridge svg {
   display: block;
   width: 100%;
   height: auto;
   overflow: visible;
 }
 
-.plot .dot { fill: var(--teal); }
-.plot .dot.alt { fill: var(--teal-soft); }
-.plot .dot.hit { fill: var(--ochre); }
-.plot .threshold { stroke: var(--slate); stroke-dasharray: 3 4; stroke-width: 1; opacity: 0.6; }
-.plot .axis { stroke: var(--rule); stroke-width: 1; }
-.plot .chr { fill: var(--slate); font-size: 9px; font-family: inherit; }
+.ridge .dot { fill: var(--teal); }
+.ridge .dot.alt { fill: var(--teal-soft); }
+.ridge .dot.hit { fill: var(--ochre); }
+.ridge .axis { stroke: var(--rule); stroke-width: 1; }
 
-.plot.animate .dot {
+.ridge.animate .dot {
   opacity: 0;
   animation: rise 0.5s ease-out forwards;
 }
@@ -195,10 +193,10 @@ h1 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .plot.animate .dot { animation: none; opacity: 1; }
+  .ridge.animate .dot { animation: none; opacity: 1; }
 }
 
-.plot figcaption {
+.ridge figcaption {
   margin-top: 0.6rem;
   font-size: 0.8125rem;
   color: var(--slate);

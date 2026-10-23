@@ -78,12 +78,11 @@
             </figure>
           </div>
 
-          <figure class="plot" id="plot">
-            <svg viewBox="0 0 1000 200" role="img" aria-label="Simulated Manhattan plot across the 29 chromosomes of Atlantic salmon, with one association peak passing the significance threshold."></svg>
+          <figure class="ridge" id="ridge">
+            <svg viewBox="0 0 1000 200" role="img" aria-label="A made-up mountain ridge drawn with dots, with a sun above it."></svg>
             <figcaption>
-              A Manhattan plot across the 29 chromosomes of Atlantic salmon, with one peak
-              above the significance line. The data are simulated, but this is what a GWAS
-              result looks like on screen.
+              A made-up mountain ridge, drawn with dots by a short script. The shape is
+              random, but it is the same every visit.
             </figcaption>
           </figure>
         </div>
@@ -391,15 +390,11 @@
 
     <script>
       (function () {
-        var svg = document.querySelector('#plot svg');
+        var svg = document.querySelector('#ridge svg');
         if (!svg) return;
         var ns = 'http://www.w3.org/2000/svg';
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        // Approximate relative lengths of the 29 Atlantic salmon chromosomes.
-        var len = [160,72,105,90,83,88,63,30,142,127,101,102,114,103,107,97,75,82,90,97,63,63,53,54,52,51,44,45,45];
-        var total = len.reduce(function (a, b) { return a + b; }, 0);
-        var W = 1000, top = 6, base = 176, gap = 3;
-        var usable = W - gap * (len.length - 1);
+        var W = 1000, floor = 190, step = 5;
         var seed = 20171;
         function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
         function el(name, attrs) {
@@ -407,39 +402,46 @@
           for (var k in attrs) e.setAttribute(k, attrs[k]);
           return e;
         }
-        var maxP = 14, thr = 7.3, x0 = 0, n = 0;
-        var yOf = function (p) { return base - (p / maxP) * (base - top); };
-        svg.appendChild(el('line', { class: 'axis', x1: 0, x2: W, y1: base + 0.5, y2: base + 0.5 }));
-        svg.appendChild(el('line', { class: 'threshold', x1: 0, x2: W, y1: yOf(thr), y2: yOf(thr) }));
-        len.forEach(function (L, c) {
-          var w = usable * L / total;
-          var pts = Math.round(L * 0.42);
-          var peakAt = c === 2 ? 0.55 : (c === 13 ? 0.3 : -1);
-          function add(f, p) {
-            p = Math.min(p, maxP);
-            var cls = 'dot' + (c % 2 ? ' alt' : '') + (p > thr ? ' hit' : '');
-            var dot = el('circle', { class: cls, cx: (x0 + f * w).toFixed(1), cy: yOf(p).toFixed(1), r: p > thr ? 2.4 : 1.7 });
-            if (!reduce) dot.style.animationDelay = (c * 28 + p * 40 + rnd() * 80) + 'ms';
-            svg.appendChild(dot);
-          }
-          for (var i = 0; i < pts; i++) {
-            add(rnd(), -Math.log(rnd() + 1e-9) / Math.LN10 * 1.6);
-          }
-          if (peakAt >= 0) {
-            var h = c === 2 ? 12.8 : 6.2, k = c === 2 ? 70 : 26;
-            for (var j = 0; j < k; j++) {
-              var d = (rnd() - 0.5) * 0.12;
-              add(peakAt + d, h * Math.exp(-d * d / 0.0009) * (0.55 + 0.45 * rnd()) + rnd());
+        function dot(x, y, cls, delay) {
+          var d = el('circle', { class: cls, cx: x.toFixed(1), cy: y.toFixed(1), r: cls.indexOf('hit') > -1 ? 2.3 : 1.7 });
+          if (!reduce) d.style.animationDelay = delay + 'ms';
+          svg.appendChild(d);
+        }
+        svg.appendChild(el('line', { class: 'axis', x1: 0, x2: W, y1: floor + 2.5, y2: floor + 2.5 }));
+
+        // The sun: a small disc of dots.
+        var cx = 790, cy = 52, R = 14;
+        for (var n = 0; n < 34; n++) {
+          var r = R * Math.sqrt((n + 0.5) / 34), a = n * 2.39996;
+          dot(cx + r * Math.cos(a), cy + r * Math.sin(a), 'dot hit', 900 + n * 25);
+        }
+        // Four ridges, far to near. Each is a few sine waves with random phases.
+        var layers = [
+          { mid: 108, amp: 70, depth: 34, soft: true },
+          { mid: 136, amp: 52, depth: 26, soft: false },
+          { mid: 158, amp: 32, depth: 18, soft: true },
+          { mid: 177, amp: 16, depth: 10, soft: false }
+        ];
+        layers.forEach(function (L, k) {
+          var f = [1.1 + rnd() * 0.8, 2.6 + rnd() * 1.4, 6.0 + rnd() * 3.0];
+          var ph = [rnd() * 6.28, rnd() * 6.28, rnd() * 6.28];
+          var wt = [0.7, 0.25, 0.05];
+          for (var x = 0; x <= W; x += step) {
+            var h = 0;
+            for (var i = 0; i < 3; i++) h += wt[i] * (1 - 2 * Math.abs(Math.sin(x / W * 3.1416 * f[i] + ph[i])));
+            var y = Math.min(floor, L.mid - L.amp * h + (rnd() - 0.5) * 2);
+            var cls = 'dot' + (L.soft ? ' alt' : '');
+            var delay = x * 1.1 + k * 140 + rnd() * 60;
+            dot(x + (rnd() - 0.5) * 2, y, cls, delay);
+            var extra = Math.floor(rnd() * 3);
+            for (var j = 0; j < extra; j++) {
+              var yy = y + 4 + rnd() * L.depth;
+              if (yy < floor) dot(x + (rnd() - 0.5) * 3, yy, cls, delay + 60 + rnd() * 120);
             }
           }
-          if (c < 9 || c % 2 === 0) {
-            var t = el('text', { class: 'chr', x: (x0 + w / 2).toFixed(1), y: base + 14, 'text-anchor': 'middle' });
-            t.textContent = c + 1;
-            svg.appendChild(t);
-          }
-          x0 += w + gap;
         });
-        if (!reduce) document.getElementById('plot').classList.add('animate');
+
+        if (!reduce) document.getElementById('ridge').classList.add('animate');
       })();
     </script>
   </body>
