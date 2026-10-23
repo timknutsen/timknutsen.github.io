@@ -86,6 +86,9 @@ Open questions:
 | 2026-10-19 | Do not link ukeoppgaver. | Household app; may show family members' names. |
 | 2026-10-19 | Redesign as a full CV page: simulated salmon Manhattan plot as hero, Schibsted Grotesk, cool fjord palette with light and dark modes, year rail for work and publications. | Tim asked for a redesign and an expanded CV ahead of job applications. |
 | 2026-10-19 | Publication list expanded to all 12 peer-reviewed articles found in PubMed and Crossref, plus the 2018 lumpfish genome dataset and talks. Earlier roles (Geno consultant, bioengineer at Lovisenberg) from kyst.no/iLaks 2017 and the NMBU interview. | Every CV line traces to a public source. |
+| 2026-10-23 | Turn the CV page into a personal site: intro, AI, projects, background, papers. Drop the Geno invited talk, the Work timeline, Skills and the AQUA-FAANG link. | Tim wants the site to be about his interests and AI development, in plain language. |
+| 2026-10-23 | No mention of the current employer or job title anywhere on the page, including metadata and footer. Education and earlier roles stay. | Keep the site general; background is about education. |
+| 2026-10-23 | Paper list collapsed in a details element; 2022 WAS abstract kept under Conference. | Less CV feel, record stays public. |
 
 ## Committed Changes
 

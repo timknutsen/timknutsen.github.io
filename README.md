@@ -11,7 +11,7 @@ server-side dependencies. Just hand-written HTML, CSS, and static assets.
 
 ```
 .
-├── index.html         # The page: intro, work, projects, publications, thesis, links
+├── index.html         # The page: intro, AI, projects, background, papers, links
 ├── styles.css         # All styling
 ├── publications.json  # Machine-readable publication metadata
 ├── 404.html           # Simple not-found page for GitHub Pages
