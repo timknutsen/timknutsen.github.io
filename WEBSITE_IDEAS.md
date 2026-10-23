@@ -96,6 +96,8 @@ Record commits here after they are made.
 
 | Date | Commit | Change | Notes |
 | --- | --- | --- | --- |
+| 2026-10-23 | `957f5d1` | Personal-site rewrite: AI and Projects sections, Background, collapsed Papers; no employer references; invited talk removed. | On branch `personal-site-2026-10`, PR pending merge. |
+| 2026-10-19 | `9fbb7ad` | Merge of PR #4: full CV redesign with Manhattan plot hero. | Live until the personal-site PR merges. |
 | 2026-10-19 | `bfa6ee1` | Refocused site on quantitative genetics and AI in research; general AI section, Talks, recent repos, timknutsen.no metadata. | Current deployed version. |
 | 2026-06-12 | `97388b7` | Refocused personal site on AI/computer vision; added LinkedIn, deep-learning paper, metadata. | Superseded by the October 2026 refresh. |
 
