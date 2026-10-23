@@ -89,6 +89,7 @@ Open questions:
 | 2026-10-23 | Turn the CV page into a personal site: intro, AI, projects, background, papers. Drop the Geno invited talk, the Work timeline, Skills and the AQUA-FAANG link. | Tim wants the site to be about his interests and AI development, in plain language. |
 | 2026-10-23 | No mention of the current employer or job title anywhere on the page, including metadata and footer. Education and earlier roles stay. | Keep the site general; background is about education. |
 | 2026-10-23 | Paper list collapsed in a details element; 2022 WAS abstract kept under Conference. | Less CV feel, record stays public. |
+| 2026-10-23 | Replace the simulated Manhattan plot hero with a dotted mountain ridge and sun, same dot animation. | Tim likes the animated dots but wants something unrelated to his day-to-day work. |
 
 ## Committed Changes
 
