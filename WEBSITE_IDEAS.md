@@ -97,6 +97,8 @@ Record commits here after they are made.
 
 | Date | Commit | Change | Notes |
 | --- | --- | --- | --- |
+| 2026-10-23 | `41466c9` | Hero: dotted mountain ridge with a sun replaces the Manhattan plot. | Merged to main. |
+| 2026-10-23 | `9789b02` | Merge of PR #5: personal-site rewrite. | Live. |
 | 2026-10-23 | `957f5d1` | Personal-site rewrite: AI and Projects sections, Background, collapsed Papers; no employer references; invited talk removed. | On branch `personal-site-2026-10`, PR pending merge. |
 | 2026-10-19 | `9fbb7ad` | Merge of PR #4: full CV redesign with Manhattan plot hero. | Live until the personal-site PR merges. |
 | 2026-10-19 | `bfa6ee1` | Refocused site on quantitative genetics and AI in research; general AI section, Talks, recent repos, timknutsen.no metadata. | Current deployed version. |
