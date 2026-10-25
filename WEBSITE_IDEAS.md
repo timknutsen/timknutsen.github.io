@@ -90,6 +90,7 @@ Open questions:
 | 2026-10-23 | No mention of the current employer or job title anywhere on the page, including metadata and footer. Education and earlier roles stay. | Keep the site general; background is about education. |
 | 2026-10-23 | Paper list collapsed in a details element; 2022 WAS abstract kept under Conference. | Less CV feel, record stays public. |
 | 2026-10-23 | Replace the simulated Manhattan plot hero with a dotted mountain ridge and sun, same dot animation. | Tim likes the animated dots but wants something unrelated to his day-to-day work. |
+| 2026-10-25 | Ran the Impeccable detector. Only finding: flat type hierarchy (h2, h3 and body all about 17px). Raised h2 to 1.6rem, lede to 1.5rem, h3 and project names to 1.2rem. Own check in Chromium found no contrast, small-text or overflow issues in light and dark, desktop and mobile. | Detector advisory; its full page scan could not launch a browser as root here. |
 
 ## Committed Changes
 
