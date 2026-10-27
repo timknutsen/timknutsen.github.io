@@ -180,6 +180,8 @@ h1 {
 .ridge .dot { fill: var(--teal); }
 .ridge .dot.alt { fill: var(--teal-soft); }
 .ridge .dot.hit { fill: var(--ochre); }
+.ridge .sun-dot { fill: var(--ochre); }
+.ridge .moon-dot { fill: var(--teal); }
 .ridge .axis { stroke: var(--rule); stroke-width: 1; }
 
 .ridge.animate .dot {

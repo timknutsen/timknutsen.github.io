@@ -79,7 +79,7 @@
           </div>
 
           <figure class="ridge" id="ridge">
-            <svg viewBox="0 0 1000 200" role="img" aria-label="A made-up mountain ridge drawn with dots, with a sun above it."></svg>
+            <svg viewBox="0 0 1000 200" role="img" aria-label="A made-up mountain ridge drawn with dots."></svg>
             <figcaption>
               A made-up mountain ridge, drawn with dots by a short script. The shape is
               random, but it is the same every visit.
@@ -409,12 +409,46 @@
         }
         svg.appendChild(el('line', { class: 'axis', x1: 0, x2: W, y1: floor + 2.5, y2: floor + 2.5 }));
 
-        // The sun: a small disc of dots.
-        var cx = 790, cy = 52, R = 14;
-        for (var n = 0; n < 34; n++) {
-          var r = R * Math.sqrt((n + 0.5) / 34), a = n * 2.39996;
-          dot(cx + r * Math.cos(a), cy + r * Math.sin(a), 'dot hit', 900 + n * 25);
+        var sky = el('g', { class: 'sky' });
+        svg.appendChild(sky);
+
+        function updateSky() {
+          var now = new Date();
+          var parts = new Intl.DateTimeFormat('en-GB', {
+            timeZone: 'Europe/Oslo', hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+          }).formatToParts(now);
+          var hour = Number(parts.find(function (p) { return p.type === 'hour'; }).value);
+          var minute = Number(parts.find(function (p) { return p.type === 'minute'; }).value);
+          var time = hour + minute / 60;
+          var daytime = time >= 6 && time < 18;
+          var progress = daytime ? (time - 6) / 12 : ((time + 6) % 24) / 12;
+          var cx = 100 + 800 * progress;
+          var cy = 125 - 85 * Math.sin(Math.PI * progress);
+          var phase = (((now.getTime() - Date.UTC(2000, 0, 6, 18, 14)) / 86400000 / 29.530588853) % 1 + 1) % 1;
+          var phaseName = phase < 0.0625 || phase >= 0.9375 ? 'new moon' :
+            phase < 0.1875 ? 'waxing crescent' : phase < 0.3125 ? 'first quarter' :
+            phase < 0.4375 ? 'waxing gibbous' : phase < 0.5625 ? 'full moon' :
+            phase < 0.6875 ? 'waning gibbous' : phase < 0.8125 ? 'last quarter' : 'waning crescent';
+          svg.setAttribute('aria-label', 'A made-up mountain ridge drawn with dots, with ' +
+            (daytime ? 'the sun' : 'the moon (' + phaseName + ')') + ' above it.');
+          while (sky.firstChild) sky.removeChild(sky.firstChild);
+          for (var n = 0; n < 80; n++) {
+            var r = 14 * Math.sqrt((n + 0.5) / 80), a = n * 2.39996;
+            var dx = r * Math.cos(a), dy = r * Math.sin(a);
+            var edge = Math.sqrt(Math.max(0, 196 - dy * dy));
+            var lit = phase <= 0.5 ? dx >= Math.cos(2 * Math.PI * phase) * edge :
+              dx <= -Math.cos(2 * Math.PI * phase) * edge;
+            if (daytime || lit) sky.appendChild(el('circle', {
+              class: daytime ? 'sun-dot' : 'moon-dot', cx: (cx + dx).toFixed(1),
+              cy: (cy + dy).toFixed(1), r: 1.45
+            }));
+          }
         }
+        updateSky();
+        setInterval(updateSky, 60000);
+        document.addEventListener('visibilitychange', function () {
+          if (!document.hidden) updateSky();
+        });
         // Four ridges, far to near. Each is a few sine waves with random phases.
         var layers = [
           { mid: 108, amp: 70, depth: 34, soft: true },
