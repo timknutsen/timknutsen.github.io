@@ -81,8 +81,8 @@
           <figure class="ridge" id="ridge">
             <svg viewBox="0 0 1000 200" role="img" aria-label="A made-up mountain ridge drawn with dots."></svg>
             <figcaption>
-              A made-up mountain ridge, drawn with dots by a short script. The shape is
-              random, but it is the same every visit.
+              A made-up mountain ridge. The sun and moon follow an illustrative day and
+              night cycle in Oslo. <span id="sky-status">The moon phase is approximate.</span>
             </figcaption>
           </figure>
         </div>
@@ -429,6 +429,9 @@
             phase < 0.1875 ? 'waxing crescent' : phase < 0.3125 ? 'first quarter' :
             phase < 0.4375 ? 'waxing gibbous' : phase < 0.5625 ? 'full moon' :
             phase < 0.6875 ? 'waning gibbous' : phase < 0.8125 ? 'last quarter' : 'waning crescent';
+          document.getElementById('sky-status').textContent = 'Oslo time: ' +
+            String(hour).padStart(2, '0') + ':' + String(minute).padStart(2, '0') +
+            '. Approximate moon phase: ' + phaseName + '.';
           svg.setAttribute('aria-label', 'A made-up mountain ridge drawn with dots, with ' +
             (daytime ? 'the sun' : 'the moon (' + phaseName + ')') + ' above it.');
           while (sky.firstChild) sky.removeChild(sky.firstChild);
