@@ -98,6 +98,7 @@ Record commits here after they are made.
 
 | Date | Commit | Change | Notes |
 | --- | --- | --- | --- |
+| 2026-11-09 | `7306adb` | Added standalone `teoriprove.html` (Mat og helse study quiz, teoriprøve uke 46). Not linked from `index.html`. | Pushed to main. |
 | 2026-10-27 | `4c8196b` | Projects: added gpt-install (ChatGPT on Windows over SSH, video and written steps). | Pushed to main. |
 | 2026-10-23 | `41466c9` | Hero: dotted mountain ridge with a sun replaces the Manhattan plot. | Merged to main. |
 | 2026-10-23 | `9789b02` | Merge of PR #5: personal-site rewrite. | Live. |
