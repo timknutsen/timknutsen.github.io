@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Øv til teoriprøve uke 46</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#f2f6fa; --surface:#ffffff; --ink:#14213d; --muted:#5a6882; --line:#d3deea;
+  --blue:#1f4e9c; --blue-ink:#ffffff; --lemon:#f3d34a; --lemon-ink:#3a2f00;
+  --green:#2e7d4f; --green-bg:#e0f1e7; --red:#c63d3d; --red-bg:#f8e1e1;
+  --tile:rgba(31,78,156,.07);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1a2e; --surface:#182744; --ink:#e8eef8; --muted:#9db0cf; --line:#2c3f63;
+    --blue:#7fa8ee; --blue-ink:#0f1a2e; --lemon:#f3d34a; --lemon-ink:#3a2f00;
+    --green:#6fcf97; --green-bg:#1b3a2b; --red:#f08a8a; --red-bg:#40222a;
+    --tile:rgba(127,168,238,.08);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1a2e; --surface:#182744; --ink:#e8eef8; --muted:#9db0cf; --line:#2c3f63;
+  --blue:#7fa8ee; --blue-ink:#0f1a2e; --green:#6fcf97; --green-bg:#1b3a2b; --red:#f08a8a; --red-bg:#40222a; --tile:rgba(127,168,238,.08);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.5;
+  background-image:linear-gradient(var(--tile) 1px,transparent 1px),linear-gradient(90deg,var(--tile) 1px,transparent 1px);background-size:36px 36px}
+h1,h2,h3{font-family:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;line-height:1.15;margin:0}
+.wrap{max-width:680px;margin:0 auto;padding:18px 16px 40px}
+header h1{font-size:2rem;font-weight:800}
+header p{margin:6px 0 0;color:var(--muted)}
+nav{display:flex;gap:6px;margin:18px 0;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:5px;position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+nav button{flex:1;border:0;background:transparent;color:var(--ink);font:inherit;font-weight:600;padding:10px 4px;border-radius:10px;cursor:pointer}
+nav button[aria-selected="true"]{background:var(--blue);color:var(--blue-ink)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+.panel{display:none}.panel.on{display:block}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px}
+.bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;width:0;background:var(--green);transition:width .3s}
+.check{display:flex;gap:12px;align-items:flex-start;padding:12px 4px;border-bottom:1px solid var(--line);cursor:pointer}
+.check:last-child{border-bottom:0}
+.check input{width:22px;height:22px;margin-top:2px;accent-color:var(--green);flex:none}
+.check span{flex:1}
+.check small{display:block;color:var(--muted)}
+.check .go{border:1px solid var(--line);background:transparent;color:var(--blue);border-radius:8px;padding:4px 10px;font:inherit;font-size:.85rem;cursor:pointer;flex:none}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+select{font:inherit;padding:9px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);max-width:100%}
+.btn{font:inherit;font-weight:600;border:0;border-radius:12px;padding:12px 16px;cursor:pointer;background:var(--blue);color:var(--blue-ink)}
+.btn.alt{background:transparent;color:var(--blue);border:1.5px solid var(--blue)}
+.btn.good{background:var(--green);color:#fff}
+.btn.bad{background:var(--red);color:#fff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn.good,:root:not([data-theme="light"]) .btn.bad{color:#0f1a2e}}
+.count{color:var(--muted);font-size:.95rem}
+.flash{min-height:230px;display:flex;flex-direction:column;justify-content:center;border:2px solid var(--blue);border-radius:18px;background:var(--surface);padding:22px;cursor:pointer;text-align:left;width:100%;color:var(--ink);font:inherit}
+.flash .tag{align-self:flex-start;background:var(--lemon);color:var(--lemon-ink);border-radius:8px;padding:2px 10px;font-size:.85rem;font-weight:600;margin-bottom:14px}
+.flash .q{font-family:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;font-size:1.35rem;font-weight:600}
+.flash .a{font-size:1.1rem}
+.flash.back{background:var(--blue);border-color:var(--blue)}
+.flash.back .a{color:var(--blue-ink)}
+.flash.back .tag{background:var(--blue-ink);color:var(--blue)}
+.flash .src{margin-top:14px;font-size:.85rem;opacity:.8}
+.hint{color:var(--muted);font-size:.9rem;margin-top:12px}
+.acts{display:flex;gap:10px;margin-top:14px}.acts .btn{flex:1}
+.opt{display:block;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:10px;cursor:pointer}
+.opt.ok{border-color:var(--green);background:var(--green-bg)}
+.opt.no{border-color:var(--red);background:var(--red-bg)}
+.opt:disabled{cursor:default;color:var(--ink)}
+.expl{margin-top:14px;padding:12px 14px;border-left:5px solid var(--blue);background:var(--surface);border-radius:8px}
+.q-title{font-family:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;font-size:1.3rem;font-weight:600;margin:6px 0 4px}
+.big{font-family:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;font-size:3rem;font-weight:800;margin:6px 0}
+.sheet h3{margin:22px 0 8px;font-size:1.2rem}
+.sheet h3:first-child{margin-top:0}
+.sheet table{width:100%;border-collapse:collapse;font-size:.95rem}
+.sheet th,.sheet td{text-align:left;vertical-align:top;padding:8px 8px 8px 0;border-bottom:1px solid var(--line)}
+.sheet th{font-weight:600;color:var(--blue)}
+.sheet ul{margin:6px 0;padding-left:20px}
+.scroll{overflow-x:auto}
+.note{font-size:.9rem;color:var(--muted);margin-top:22px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Teoriprøve uke 46</h1>
+  <p>Mat og helse: sjekkliste, kort, quiz og kjapp oversikt.</p>
+</header>
+
+<nav role="tablist" aria-label="Øvingsmoduser">
+  <button role="tab" aria-selected="true" data-tab="sjekk">Sjekkliste</button>
+  <button role="tab" aria-selected="false" data-tab="kort">Kort</button>
+  <button role="tab" aria-selected="false" data-tab="quiz">Quiz</button>
+  <button role="tab" aria-selected="false" data-tab="oversikt">Oversikt</button>
+</nav>
+
+<section class="panel on" id="sjekk">
+  <div class="card">
+    <h2 style="font-size:1.3rem">Sjekk av det du kan</h2>
+    <div class="count" id="sjekkCount"></div>
+    <div class="bar"><i id="sjekkBar"></i></div>
+    <div id="sjekkList" style="margin-top:8px"></div>
+    <div class="row" style="margin-top:14px"><button class="btn alt" id="sjekkReset">Nullstill</button></div>
+  </div>
+</section>
+
+<section class="panel" id="kort">
+  <div class="row">
+    <label for="deck" class="count">Tema:</label>
+    <select id="deck"></select>
+  </div>
+  <div class="count" id="kortCount"></div>
+  <button class="flash" id="flash" aria-live="polite"></button>
+  <div class="hint">Trykk på kortet for å snu det.</div>
+  <div class="acts">
+    <button class="btn bad" id="kBad">Kan ikke</button>
+    <button class="btn good" id="kGood">Kan</button>
+  </div>
+  <div class="row" style="margin-top:14px">
+    <button class="btn alt" id="kPrev">Forrige</button>
+    <button class="btn alt" id="kNext">Neste</button>
+    <button class="btn alt" id="kShuffle">Bland</button>
+    <button class="btn alt" id="kOnlyWeak">Bare de jeg ikke kan</button>
+  </div>
+</section>
+
+<section class="panel" id="quiz">
+  <div id="quizBox"></div>
+</section>
+
+<section class="panel" id="oversikt">
+  <div class="card sheet" id="sheet"></div>
+</section>
+
+<p class="note">Bygget på vitaminarket (Mat og helse-boka), powerpointene fra teoriøkt 1 til 3, potet-powerpointen og Helsedirektoratets sju kostråd fra 2024. «Takk for mat», oppvaskarket og praktisk matlaging er ikke med. Kort merket «Generelt» er ikke hentet fra arkene dine, så sjekk dem mot notatene.</p>
+</div>
+
+<script>
+/* ---------- DATA ---------- */
+var CHECKLIST = [
+ ["Næringsstoffer: oppgaver og matkilder","Karbohydrater, proteiner, fett, vitaminer, mineraler og sporstoffer","Karbohydrater"],
+ ["Typer fett og grad av sunnhet","Mettet, enumettet, flerumettet. Synlig og skjult fett.","Fett"],
+ ["Antioksidanter","Eksempler og hvordan de virker (vitamin C, E og selen står i vitaminarket)","Antioksidanter"],
+ ["Kolesterolets oppgave","","Kolesterol"],
+ ["Livsstilssykdommer","Diabetes og hjerte- og karsykdommer: symptomer, årsaker, behandling, forebygging","Livsstil"],
+ ["Tips for bedre matvaner (Takk for mat)","Boka er ikke med i denne appen ennå","Livsstil"],
+ ["Oppvaskregler","Arket er ikke med i denne appen ennå","Hygiene og oppvask"],
+ ["Hvorfor god hygiene på kjøkkenet","","Hygiene og oppvask"],
+ ["Praktisk matlaging hittil i år","Ikke med i appen. Gå gjennom oppskriftene dere har laget.","Hygiene og oppvask"],
+ ["Energibalanse","","Energi"],
+ ["Helsedirektoratets kostråd","De sju kostrådene fra 2024","Kostråd"],
+ ["Fakta om potet (kun fra PP)","","Potet"]
+];
+
+/* [tema, spørsmål, svar, kilde] */
+var CARDS = [
+ ["Energi","Hvor mange kcal gir 1 gram karbohydrat, protein og fett?","Karbohydrat 4 kcal, protein 4 kcal og fett 9 kcal. Det er dobbelt så mye energi i fett.","Teoriøkt 2"],
+ ["Energi","Hvor mange kJ er 1 kcal?","1 kcal er 4,2 kJ.","Teoriøkt 2"],
+ ["Energi","Hvilke tre næringsstoffer gir energi?","Karbohydrat, fett og protein.","Teoriøkt 2"],
+ ["Energi","Hvor mye energi trenger gutter og jenter mellom 14 og 17 år per dag?","Gutter ca. 2900 kcal (12 300 kJ). Jenter ca. 2300 kcal (9600 kJ).","Teoriøkt 2"],
+ ["Energi","Hva er energibalanse?","Energien du får i deg fra mat og drikke er like stor som energien kroppen bruker. Da holder vekten seg stabil.","Generelt (PP har ikke svaret)"],
+ ["Energi","Hva skjer hvis du spiser mer energi enn du bruker, over tid?","Overskuddet lagres som fett, og vekten går opp.","Generelt"],
+ ["Energi","Hva skjer med blodsukkeret ved mye tomme kalorier og sukkerholdige varer?","Blodsukkeret blir ustabilt og svingende.","Teoriøkt 2"],
+ ["Energi","Hvor stor del av energien i kostholdet bør komme fra fett?","25 til 35 prosent.","Teoriøkt 2"],
+
+ ["Karbohydrater","Hvilke tre typer karbohydrater finnes?","Stivelse, kostfiber og sukkerarter.","Teoriøkt 2"],
+ ["Karbohydrater","Hva er stivelse?","Lange sukkerkjeder av glukose. Finnes i grove kornblandinger, grovt brød, ris, pasta og poteter. Disse bør danne grunnlaget i kosten.","Teoriøkt 2"],
+ ["Karbohydrater","Hva er kostfiber, og hva gjør det?","Lange sukkerkjeder av glukose som hjelper fordøyelsen ved å trekke vann i tarmen, så vi slipper forstoppelse.","Teoriøkt 2"],
+ ["Karbohydrater","Hvorfor er fiber bra?","Hindrer forstoppelse, er «feiekost» i tykktarmen som feier bort gamle rester som kan utvikle seg til kreft, gir god metthetsfølelse og er bra for tennene.","Teoriøkt 2"],
+ ["Karbohydrater","Hva er sukkerarter?","Korte sukkerkjeder av glukose som smaker søtt, for eksempel bordsukker.","Teoriøkt 2"],
+ ["Karbohydrater","Hva menes med «tomme kalorier»?","Energi uten andre næringsstoffer, kun sukker. Begrens godteri, kaker, brus og saft.","Teoriøkt 2"],
+
+ ["Protein","Hvor mange aminosyrer består proteiner av?","20 forskjellige aminosyrer. De kan sammenlignes med togvogner.","Teoriøkt 2"],
+ ["Protein","Hva er den beste proteinkilden, og hvorfor?","Egg. Det inneholder alle 20 aminosyrene.","Teoriøkt 2"],
+ ["Protein","Nevn gode proteinkilder.","Egg, kjøtt, ost, melk, bønner og erter. Også fisk, fugl og soya.","Teoriøkt 2"],
+ ["Protein","Hva betyr at et protein er fullverdig?","Kilden inneholder alle aminosyrene kroppen trenger. Fullverdige: meieriprodukter, kjøtt, fisk og fugl, egg og soya.","Teoriøkt 2"],
+ ["Protein","Hvilke proteinkilder er ikke fullverdige?","Kornprodukter, belgfrukter, nøtter og frø. Kombiner dem for å få alle aminosyrene.","Teoriøkt 2"],
+
+ ["Fett","Fett er den mest konsentrerte energikilden. Hva betyr det?","1 gram fett gir mye energi og tar lite plass i magen (9 kcal per gram).","Teoriøkt 2"],
+ ["Fett","Hva kjennetegner mettet fett, og hvor finnes det?","Usunt, hardt i kjøleskapet. Ost, melk, smør og gris.","Teoriøkt 2"],
+ ["Fett","Hva kjennetegner enumettet fett, og hvor finnes det?","Litt mer sunt, mykt i kjøleskapet. Fisk, oliven og myk plantemargarin.","Teoriøkt 2"],
+ ["Fett","Hva kjennetegner flerumettet fett, og hvor finnes det?","Best, inneholder omega-3, flytende i kjøleskapet. Fet fisk, nøtter, solsikkeolje og soyaolje.","Teoriøkt 2"],
+ ["Fett","Gi eksempler på synlig fett.","Smør, stripene i baconet, fettprikkene på salamipølsen og fettranden på koteletten.","Teoriøkt 2"],
+ ["Fett","Gi eksempler på skjult fett.","Ost, pølser, potetchips, iskrem, sjokolade, kjøttdeig og nøtter.","Teoriøkt 2"],
+ ["Fett","Hva er det essensielle fettet?","Omega-3 og omega-6. De er byggesteiner i hinnene rundt cellene. Kroppen kan ikke lage dem selv, så vi må få dem gjennom maten.","Teoriøkt 2"],
+ ["Fett","Hvor finner vi essensielle fettsyrer?","Tran, fet fisk, linfrø, valnøtter og soya.","Teoriøkt 2"],
+
+ ["Kolesterol","Hva er kolesterol, og hva er oppgaven?","Et fettstoff kroppen produserer selv. Det har en ende som binder seg til vann (blod) og en som binder seg til fett, så fett fra kosten kan blandes med blodet og fraktes rundt i kroppen.","Teoriøkt 2"],
+ ["Kolesterol","Hvorfor er for mye kolesterol ikke bra?","Det avleires fett på innsiden av årene. Årene kan tettes, noe som kan gi blodpropp, høyt blodtrykk og hjerte- og karsykdommer.","Teoriøkt 2 og 3"],
+ ["Kolesterol","Hva får kolesterolet til å øke?","Mye mettet fett. Kroppen må produsere mye kolesterol for å frakte det.","Teoriøkt 2"],
+ ["Kolesterol","Hvilke fettvalg er bra for hjertet?","Mager kost med umettet fett fra fet fisk, oliven og myke plantemargariner.","Teoriøkt 2"],
+
+ ["Vitaminer","Hva betyr ordet vitamin, og kan kroppen lage dem selv?","«Vita» betyr liv. Kroppen kan ikke lage vitaminer, så de må tilføres gjennom mat og drikke.","Vitaminark (Mat og helse-boka)"],
+ ["Vitaminer","Hvilke vitaminer er fettløselige, og hva skjer med dem i kroppen?","A, D, E og K. De finnes i mat med fett og lagres i kroppens fettvev.","Vitaminark"],
+ ["Vitaminer","Hvilke vitaminer er vannløselige, og hva skjer med overskuddet?","Vitamin C og B-vitaminene. De kan ikke lagres. Det du ikke trenger skilles ut med urinen.","Vitaminark"],
+ ["Vitaminer","Vitamin A: oppgaver og kilder?","Normal celledeling, normalt syn, hud og slimhinner. Kilder: leverpostei, smør/margarin, tran og sterkt fargede grønnsaker.","Vitaminark"],
+ ["Vitaminer","Vitamin D: oppgaver og kilder?","Riktig mengde kalsium i blodet, øker opptaket av kalsium fra tarmen og lagrer kalsium i skjelettet. Kilder: fet fisk, smør/margarin og tran.","Vitaminark"],
+ ["Vitaminer","Vitamin E: oppgaver og kilder?","Beskytter cellene mot skadelige stoffer (antioksidant) og holder hjertet og blodårene friske. Kilder: planteoljer, nøtter, tran, havre, fet fisk og margarin.","Vitaminark"],
+ ["Vitaminer","Vitamin K: oppgaver og kilder?","Gjør at blodet koagulerer så sår kan danne skorper, styrker skjelettet og holder hjerte og blodårer friske. Kilder: mørkegrønne bladgrønnsaker, leverpostei og belgvekster.","Vitaminark"],
+ ["Vitaminer","B-vitaminer: oppgaver og kilder?","Samarbeider om flere viktige oppgaver: bygge opp cellene, skaffe cellene energi. Finnes i nesten alle matvarer.","Vitaminark"],
+ ["Vitaminer","Vitamin C: oppgaver og kilder?","Beskytter cellene mot skadelige stoffer (antioksidant), hjelper til med opptak av jern fra planter og danner bindevev i hud og skjelett. Kilder: frukt, bær, grønnsaker, poteter og juice.","Vitaminark"],
+
+ ["Mineraler","Hvor mye av kroppsvekten utgjør mineraler?","Mindre enn 4 prosent, men de er helt nødvendige.","Vitaminark"],
+ ["Mineraler","Forskjellen på mineraler og sporstoffer?","Sporstoffer er også mineraler, men det finnes bare «spor» av dem i kroppen. Eksempler: jern, jod, sink, selen og fluor.","Vitaminark"],
+ ["Mineraler","Kalsium: oppgaver og kilder?","Gjør skjelettet og tennene harde, lar nerveceller sende beskjeder, lar musklene trekke seg sammen, viktig for blodtrykket. Kilder: melk og meieriprodukter, grønne bladgrønnsaker, mandler og sardiner.","Vitaminark"],
+ ["Mineraler","Fosfor: oppgaver og kilder?","Del av skjelettet, gjør at fett kan fraktes rundt, del av cellemembranen. Kilder: melk og meieri, grove kornprodukter og kjøtt.","Vitaminark"],
+ ["Mineraler","Kalium: oppgaver og kilder?","Musklene kan trekke seg sammen, riktig pH-verdi, riktig væskemengde inni og utenfor cellene. Kilder: frukt, grønnsaker, korn og kornprodukter. Poteten er en viktig kaliumkilde.","Vitaminark og Potet-PP"],
+ ["Mineraler","Natrium: oppgave og kilder?","Styrer væskebalansen sammen med kalium. Kilder: salt og saltholdig mat som brød, spekemat, chips og ferdigmat.","Vitaminark"],
+ ["Mineraler","Magnesium: oppgaver og kilder?","Styrer aktiviteten i muskler og nerver, og gjør at karbohydrater kan brukes som energi. Kilder: korn, grønnsaker og poteter, melk og kjøtt, nøtter.","Vitaminark"],
+
+ ["Sporstoffer","Hvilket sporstoff har vi mest av i kroppen?","Jern, ca. fire gram. Det tilsvarer en liten spiker.","Vitaminark"],
+ ["Sporstoffer","Jern: oppgave og kilder?","Frakter oksygen fra lungene til alle cellene. Kilder: rødt kjøtt, leverpostei, grove kornprodukter, mørkegrønne bladgrønnsaker og linfrø.","Vitaminark"],
+ ["Sporstoffer","Jod: oppgave og kilder?","Trengs for å lage hormoner i skjoldbruskkjertelen. Kilder: melk og meieri, mager fisk fra havet og annen sjømat.","Vitaminark"],
+ ["Sporstoffer","Sink: oppgaver og kilder?","Gjør at sår gror, viktig for immunforsvaret og smakssansen. Kilder: melk og meieri, kjøtt, egg og belgvekster.","Vitaminark"],
+ ["Sporstoffer","Selen: oppgave og kilder?","Samarbeider med vitamin E for å beskytte cellene. Kilder: saltvannsfisk, skalldyr, lever, erter og kjøtt. Norsk korn har lite selen.","Vitaminark"],
+
+ ["Antioksidanter","Hvilke stoffer i vitaminarket beskytter cellene mot skadelige stoffer?","Vitamin C og vitamin E. Selen samarbeider med vitamin E for å beskytte cellene.","Vitaminark"],
+ ["Antioksidanter","Hvordan virker antioksidanter?","De nøytraliserer frie radikaler (skadelige stoffer) så de ikke skader cellene.","Generelt (sjekk egne notater)"],
+
+ ["Livsstil","Hva kjennetegner en sunn livsstil?","Regelmessig spiserytme, variert kosthold, lite snacks, kaker og godterier, mye mosjon, ikke røyke og nok søvn.","Teoriøkt 3"],
+ ["Livsstil","Hva kjennetegner en usunn livsstil?","Lite variert kost, ujevn spiserytme, lite frukt og grønt, mye fett og søtt, lite aktivitet, røyking og lite eller for mye søvn.","Teoriøkt 3"],
+ ["Livsstil","Hvor mye fysisk aktivitet anbefales barn?","Minst 1 time hver dag.","Teoriøkt 3"],
+ ["Livsstil","Hvilke livsstilssykdommer nevnes i PP?","Diabetes type 2, høyt kolesterol, hjerte- og karsykdommer og kreft.","Teoriøkt 3"],
+ ["Livsstil","Hva skjer ved diabetes type 2?","Kroppen lager for lite insulin og klarer ikke flytte sukker fra blodet inn i cellene. Det gir høyt blodsukker som over tid sliter på nyrer, hjerte, øyne, blodårer og nerver.","Teoriøkt 3"],
+ ["Livsstil","Hva er årsaken til diabetes type 2?","Ofte dårlig kosthold og lite fysisk aktivitet, ofte sammen med overvekt og arvelig disposisjon. Kan i de fleste tilfeller forebygges.","Teoriøkt 3"],
+ ["Livsstil","Hvordan behandles diabetes type 2?","Kostregulering, mosjon og slanking som førstevalg. Kan ved behov også behandles med insulin.","Teoriøkt 3"],
+ ["Livsstil","Forskjellen på diabetes type 1 og 2?","Type 1 er medfødt, kan ikke forebygges og har ingen kur. Den behandles med insulin (penn eller pumpe). Type 2 skyldes oftest overvekt, inaktivitet og usunt kosthold.","Teoriøkt 3"],
+ ["Livsstil","Nevn hjerte- og karsykdommer.","Hjerneblødning, slag, hjerteinfarkt, blodpropp og åreforkalkning.","Teoriøkt 3"],
+ ["Livsstil","Hva øker risikoen for hjerte- og karsykdom?","Overvekt, røyking, høyt kolesterol, diabetes og lite mosjon. Også arv.","Teoriøkt 3"],
+ ["Livsstil","Hvordan kan du redusere risikoen for hjerte- og karsykdom?","Spis mindre mettet fett og mindre salt, slutt eller ikke begynn å røyke, og mosjoner moderat.","Teoriøkt 3"],
+ ["Livsstil","Hva er kreft, og hvilken sammenheng er det med kosthold?","Celler som deler seg ukontrollert og kan danne svulster og spre seg. Fett og lavt inntak av kostfiber henger sammen med noen kreftformer.","Teoriøkt 3"],
+ ["Livsstil","Hva er spiseforstyrrelser?","Et vanskelig forhold til mat, vekt og egen kropp. Typer: anoreksi, bulimi, overspising og megareksi.","Teoriøkt 3"],
+ ["Livsstil","Hvordan forebygger du livsstilssykdommer (teoriøkt 3)?","Minst tre porsjoner grønnsaker og to frukt/bær daglig, grove kornprodukter, kokt eller bakt mat, mer fisk, magre kjøtt- og meieriprodukter, oljer og margarin, kutt sukker, vær varsom med salt, vann som tørstedrikk, 60 min aktivitet daglig.","Teoriøkt 3"],
+
+ ["Kostråd","Hvor mange kostråd har Helsedirektoratet (2024)?","Sju.","Helsedirektoratet 2024"],
+ ["Kostråd","Kostråd 1","Ha et variert kosthold, velg mest mat fra planteriket og spis med glede.","Helsedirektoratet 2024"],
+ ["Kostråd","Kostråd 2","Frukt, bær eller grønnsaker bør være en del av alle måltider.","Helsedirektoratet 2024"],
+ ["Kostråd","Kostråd 3","La grovt brød eller andre fullkornsprodukter være en del av flere måltider hver dag.","Helsedirektoratet 2024"],
+ ["Kostråd","Kostråd 4","Velg oftere fisk og sjømat, bønner og linser enn rødt kjøtt. Spis minst mulig bearbeidet kjøtt.","Helsedirektoratet 2024"],
+ ["Kostråd","Kostråd 5","Ha et daglig inntak av melk og meieriprodukter. Velg produkter med mindre fett.","Helsedirektoratet 2024"],
+ ["Kostråd","Kostråd 6","Godteri, snacks og søte bakevarer bør begrenses.","Helsedirektoratet 2024"],
+ ["Kostråd","Kostråd 7","Drikk vann!","Helsedirektoratet 2024"],
+
+ ["Potet","Hvor og når ble poteten først tatt i bruk?","Av folk i Sør-Amerika for ca. 8000 år siden. De eldste sporene etter dyrking er ca. 4500 år gamle og finnes i Peru.","Potet-PP"],
+ ["Potet","Hvordan kom poteten til Europa?","Spanske conquistadorer på jakt etter inkaenes gull fant potetene og tok dem med til Spania i første halvdel av 1500-tallet.","Potet-PP"],
+ ["Potet","Hvorfor ble poteten sjømannskost?","C-vitaminet i poteten sikret mot skjørbuk på lange båtreiser.","Potet-PP"],
+ ["Potet","Når kom gjennombruddet for poteten i Norge?","Rundt 1750. Folkevekst la press på matproduksjonen, og sild og poteter ble hverdagskost.","Potet-PP"],
+ ["Potet","Hva skjedde i Irland i 1845?","Potetavlingen råtnet etter en kald sommer. Minst 1 million døde av sult eller underernæring.","Potet-PP"],
+ ["Potet","Hva er «øynene» på poteten?","Knopper som utvikler nye planter i neste vekstsesong.","Potet-PP"],
+ ["Potet","Hvilke næringsstoffer er poteten rik på?","Stivelse (energi), lite fett. En av våre viktigste kaliumkilder, også mangan og jern. C-vitamin er ikke spesielt høyt, men viktig fordi vi spiser mye potet.","Potet-PP"],
+ ["Potet","Hvorfor bør du spise poteten med skall?","De fleste næringsstoffene sitter i og rett under skallet.","Potet-PP"],
+ ["Potet","Hva anbefaler helsemyndighetene om tilberedning?","Kokte eller bakte poteter. De inngår i «fem om dagen».","Potet-PP"],
+ ["Potet","Hva skal du gjøre med grønne poteter, og hvorfor?","Ikke spis dem. Lys gir solanin (giftig) og klorofyll (ufarlig). Også svak grønnfarge over hele poteten er farlig.","Potet-PP"],
+ ["Potet","Hvordan skal poteter lagres?","Mørkt og kjølig (ca. 4 grader) så de ikke blir grønne, tørker ut eller spirer. Uvaskede poteter holder lengst.","Potet-PP"],
+ ["Potet","Hva betyr tørrstoffinnhold for poteten?","Høyt tørrstoff koker lett i stykker. For lavt tørrstoff gir ikke melen potet.","Potet-PP"],
+
+ ["Hygiene og oppvask","Hvorfor er god hygiene på kjøkkenet viktig?","For å unngå matforgiftning og smitte. Bakterier kan vokse i mat og gi oppkast og diaré.","Generelt (sjekk arket)"],
+ ["Hygiene og oppvask","Hva er krysskontaminering?","Bakterier flyttes fra rå mat (kjøtt, fisk, egg) til ferdig mat via hender, brett, kniver eller kluter.","Generelt"],
+ ["Hygiene og oppvask","Når skal du vaske hendene?","Før du lager mat, etter toalett og etter å ha rørt rått kjøtt, fisk eller egg.","Generelt"],
+ ["Hygiene og oppvask","Hva er vanlig rekkefølge i oppvasken?","Rene ting først (glass), så bestikk, tallerkener og skitneste sist (panner). Skift vann når det blir fett og skittent.","Generelt (sjekk oppvaskarket)"]
+];
+
+/* [tema, spørsmål, alternativer, riktig indeks, forklaring] */
+var QUIZ = [
+ ["Energi","Hvor mange kcal gir 1 gram fett?",["4 kcal","7 kcal","9 kcal","12 kcal"],2,"Fett gir 9 kcal per gram, dobbelt så mye som karbohydrat og protein."],
+ ["Energi","Hvor mange kcal gir 1 gram karbohydrat?",["4 kcal","6 kcal","9 kcal","2 kcal"],0,"Både karbohydrat og protein gir 4 kcal per gram."],
+ ["Energi","1 kcal tilsvarer",["1 kJ","4,2 kJ","10 kJ","0,5 kJ"],1,"1 kcal er 4,2 kJ."],
+ ["Energi","Hvor mye energi trenger gutter 14 til 17 år per dag?",["ca. 1500 kcal","ca. 2300 kcal","ca. 2900 kcal","ca. 4000 kcal"],2,"Gutter ca. 2900 kcal og jenter ca. 2300 kcal."],
+ ["Energi","Hva er energibalanse?",["Spise bare sunn mat","Energi inn er lik energi ut","Spise mindre enn du bruker","Spise bare tre måltider"],1,"Når inntak og forbruk er like, holder vekten seg stabil."],
+ ["Energi","Hvor stor del av energien bør komme fra fett?",["5 til 10 prosent","25 til 35 prosent","50 til 60 prosent","70 prosent"],1,"25 til 35 prosent av energien bør komme fra fett."],
+ ["Energi","Hva skjer med blodsukkeret ved mye sukker og tomme kalorier?",["Det blir stabilt","Det blir ustabilt og svingende","Det synker alltid","Ingenting"],1,"Sukkerholdige varer gir svingende blodsukker."],
+ ["Karbohydrater","Hvilke tre typer karbohydrater finnes?",["Stivelse, kostfiber og sukkerarter","Fett, protein og stivelse","Glukose, salt og fiber","Stivelse, olje og sukker"],0,"Stivelse, kostfiber og sukkerarter."],
+ ["Karbohydrater","Hvorfor kalles kostfiber «feiekost»?",["Det smaker godt","Det feier bort gamle rester i tykktarmen","Det gir mye energi","Det renser munnen"],1,"Fiber feier bort gamle rester som kan utvikle seg til kreft."],
+ ["Karbohydrater","Hva er «tomme kalorier»?",["Mat uten kalorier","Energi uten andre næringsstoffer, kun sukker","Fett uten protein","Vann med smak"],1,"Godteri, kaker, brus og saft gir kun sukker."],
+ ["Karbohydrater","Hvilken matvare er rik på stivelse og kostfiber?",["Brus","Grovt brød","Smør","Godteri"],1,"Grove kornprodukter, ris, pasta og poteter er rike på stivelse."],
+ ["Protein","Hvor mange forskjellige aminosyrer består proteiner av?",["5","10","20","50"],2,"20 aminosyrer, som togvogner."],
+ ["Protein","Hvilken matvare er den beste proteinkilden?",["Brød","Egg","Epler","Ris"],1,"Egg inneholder alle 20 aminosyrene."],
+ ["Protein","Hvilken gruppe er ikke fullverdig proteinkilde alene?",["Kjøtt, fisk og fugl","Egg","Kornprodukter og belgfrukter","Meieriprodukter"],2,"Korn, belgfrukter, nøtter og frø mangler noen aminosyrer og bør kombineres."],
+ ["Fett","Hvilket fett er hardt i kjøleskapet og usunt?",["Mettet fett","Flerumettet fett","Enumettet fett","Omega-3"],0,"Mettet fett er hardt, for eksempel smør, ost og gris."],
+ ["Fett","Hvilket fett er best og inneholder omega-3?",["Mettet","Flerumettet","Transfett","Hardt fett"],1,"Flerumettet fett fra fet fisk, nøtter og soyaolje er best."],
+ ["Fett","Hvilken matvare inneholder mest enumettet fett?",["Smør","Oliven","Ost","Bacon"],1,"Fisk, oliven og myk plantemargarin er enumettet."],
+ ["Fett","Hva er et eksempel på synlig fett?",["Potetchips","Fettranden på koteletten","Iskrem","Kjøttdeig"],1,"Smør, baconstriper, fettprikker på salami og fettrand er synlig fett."],
+ ["Fett","Hva er et eksempel på skjult fett?",["Smør","Potetchips","Fettrand på kotelett","Baconstriper"],1,"Ost, pølser, chips, iskrem, sjokolade, kjøttdeig og nøtter har skjult fett."],
+ ["Fett","Hvorfor er omega-3 og omega-6 essensielle?",["De smaker godt","Kroppen kan ikke lage dem selv","De gir mest energi","De finnes bare i brød"],1,"Vi må få dem gjennom maten. De er byggesteiner i cellehinnene."],
+ ["Fett","Hvilken matvare er en kilde til omega-3?",["Tran","Smør","Sukker","Hvitt brød"],0,"Tran, fet fisk, linfrø og valnøtter."],
+ ["Kolesterol","Hva er kolesterolets oppgave?",["Gi energi","Hjelpe fettet å blande seg med blodet og fraktes rundt","Bygge muskler","Lage vitaminer"],1,"Kolesterol binder seg både til fett og vann (blod)."],
+ ["Kolesterol","Hva får kolesterolet til å øke?",["Mye mettet fett","Mye vann","Mye fiber","Fet fisk"],0,"Mettet fett krever mye kolesterol for å fraktes."],
+ ["Kolesterol","Hva er bra for hjertet?",["Mye mettet fett","Umettet fett fra fet fisk, oliven og myk margarin","Mye sukker","Mye salt"],1,"Mager kost med umettet fett er bra for hjertet."],
+ ["Vitaminer","Hvilke vitaminer er fettløselige?",["B og C","A, D, E og K","Bare C","A og C"],1,"A, D, E og K lagres i fettvev."],
+ ["Vitaminer","Hva skjer med overskudd av vannløselige vitaminer?",["Lagres i fettvev","Skilles ut med urinen","Lagres i skjelettet","Blir til energi"],1,"De kan ikke lagres og skilles ut med urinen."],
+ ["Vitaminer","Hvilket vitamin sørger for normalt syn og hud og slimhinner?",["Vitamin A","Vitamin C","Vitamin K","Vitamin B"],0,"Vitamin A. Kilder: leverpostei, smør/margarin, tran, sterkt fargede grønnsaker."],
+ ["Vitaminer","Hvilket vitamin øker opptaket av kalsium fra tarmen?",["Vitamin D","Vitamin E","Vitamin K","Vitamin C"],0,"Vitamin D. Kilder: fet fisk, smør/margarin, tran."],
+ ["Vitaminer","Hvilket vitamin gjør at blodet koagulerer så sår kan danne skorper?",["Vitamin A","Vitamin C","Vitamin K","Vitamin D"],2,"Vitamin K. Kilder: mørkegrønne bladgrønnsaker, leverpostei, belgvekster."],
+ ["Vitaminer","Hvilket vitamin hjelper til med opptak av jern fra planter?",["Vitamin C","Vitamin D","Vitamin A","Vitamin K"],0,"Vitamin C. Det danner også bindevev i hud og skjelett."],
+ ["Vitaminer","Hvilke kilder er gode for vitamin E?",["Planteoljer og nøtter","Melk og ost","Ris og pasta","Brus"],0,"Planteoljer, nøtter, tran, havre, fet fisk og margarin."],
+ ["Mineraler","Hvor stor del av kroppsvekten utgjør mineraler?",["Over 50 prosent","Ca. 20 prosent","Under 4 prosent","Ingenting"],2,"Mindre enn 4 prosent, men helt nødvendige."],
+ ["Mineraler","Hvilket mineral gjør skjelettet og tennene harde?",["Kalsium","Natrium","Jod","Selen"],0,"Kalsium. Kilder: melk, grønne bladgrønnsaker, mandler og sardiner."],
+ ["Mineraler","Hvilket mineral styrer væskebalansen sammen med kalium?",["Magnesium","Natrium","Sink","Fosfor"],1,"Natrium. Finnes i salt og saltholdig mat som brød, spekemat og chips."],
+ ["Mineraler","Hvilket mineral er viktig for at muskler og nerver virker og at karbohydrater brukes som energi?",["Magnesium","Jod","Kalsium","Jern"],0,"Magnesium. Kilder: korn, grønnsaker, poteter, nøtter."],
+ ["Mineraler","Hvilket mineral er del av skjelettet og cellemembranen?",["Fosfor","Kalium","Natrium","Selen"],0,"Fosfor. Kilder: melk og meieri, grove kornprodukter og kjøtt."],
+ ["Sporstoffer","Hvilket sporstoff har vi mest av i kroppen?",["Jod","Jern","Sink","Selen"],1,"Jern, ca. fire gram, like mye som en liten spiker."],
+ ["Sporstoffer","Hva er jernets oppgave?",["Frakte oksygen til cellene","Gjøre tennene harde","Lage hormoner","Styre væskebalansen"],0,"Jern frakter oksygen fra lungene til alle cellene."],
+ ["Sporstoffer","Hva trengs jod til?",["Hormoner i skjoldbruskkjertelen","Blodpropp","Sterkere tenner","Syn"],0,"Jod. Kilder: melk og meieri, mager fisk fra havet, sjømat."],
+ ["Sporstoffer","Hvilket sporstoff gjør at sår gror og er viktig for smakssansen?",["Sink","Jod","Selen","Jern"],0,"Sink. Kilder: melk, kjøtt, egg, belgvekster."],
+ ["Sporstoffer","Hvilket sporstoff samarbeider med vitamin E for å beskytte cellene?",["Selen","Jod","Kalium","Fosfor"],0,"Selen. Kilder: saltvannsfisk, skalldyr, lever, erter og kjøtt."],
+ ["Livsstil","Hva skjer ved diabetes type 2?",["Kroppen lager for lite insulin og blodsukkeret blir høyt","Kroppen lager for mye insulin og blodsukkeret blir for lavt","Blodet mangler jern","Hjertet slutter å slå"],0,"For lite insulin gjør at sukker ikke kommer inn i cellene."],
+ ["Livsstil","Hva er førstevalg i behandling av diabetes type 2?",["Kostregulering, mosjon og slanking","Alltid insulinsprøyte","Operasjon","Mer sukker"],0,"Kan ved behov også behandles med insulin."],
+ ["Livsstil","Hva stemmer om diabetes type 1?",["Er medfødt og må behandles med insulin","Skyldes bare usunt kosthold","Kan kureres med slanking","Skyldes for mye salt"],0,"Type 1 kan ikke forebygges og har ingen kur."],
+ ["Livsstil","Hva øker risikoen for hjerte- og karsykdommer?",["Overvekt, røyking og lite mosjon","Mye mosjon","Fet fisk","Grønnsaker"],0,"Også høyt kolesterol og diabetes."],
+ ["Livsstil","Hvilken sykdom regnes som hjerte- og karsykdom?",["Hjerteinfarkt","Forkjølelse","Brudd","Allergi"],0,"Også hjerneblødning, slag, blodpropp og åreforkalkning."],
+ ["Livsstil","Hvor mye fysisk aktivitet anbefales barn?",["10 minutter","30 minutter i uka","Minst 1 time hver dag","Bare på søndager"],2,"Minst 1 time hver dag."],
+ ["Livsstil","Hva er megareksi?",["Syklig opptatt av å bygge muskler","Å spise for lite","Å ikke spise frokost","En vitaminmangel"],0,"Det er en type spiseforstyrrelse."],
+ ["Livsstil","Hva i kostholdet henger sammen med noen former for kreft?",["Fett og lavt inntak av kostfiber","Mye vann","Mye fisk","Mye frukt"],0,"Teoriøkt 3 nevner fett og lavt inntak av kostfiber."],
+ ["Kostråd","Hvor mange offisielle kostråd har Helsedirektoratet fra 2024?",["3","5","7","12"],2,"Sju kostråd."],
+ ["Kostråd","Hva bør være en del av alle måltider?",["Frukt, bær eller grønnsaker","Kjøtt","Brus","Ost"],0,"Kostråd 2."],
+ ["Kostråd","Hva sier kostrådene om brød?",["Grovt brød eller fullkorn i flere måltider hver dag","Bare hvitt brød","Aldri brød","Bare til frokost"],0,"Kostråd 3."],
+ ["Kostråd","Hva bør du velge oftere enn rødt kjøtt?",["Fisk og sjømat, bønner og linser","Pølser","Bacon","Pizza"],0,"Kostråd 4. Spis minst mulig bearbeidet kjøtt."],
+ ["Kostråd","Hva sier kostrådene om melk og meieriprodukter?",["Daglig inntak, velg mindre fett","Unngå helt","Bare ost","Bare fløte"],0,"Kostråd 5."],
+ ["Kostråd","Hva bør begrenses?",["Godteri, snacks og søte bakevarer","Fisk","Grønnsaker","Vann"],0,"Kostråd 6."],
+ ["Kostråd","Hva er det siste kostrådet?",["Drikk vann!","Spis kake","Hopp over frokost","Drikk brus"],0,"Kostråd 7."],
+ ["Potet","Hvor kommer poteten opprinnelig fra?",["Sør-Amerika","Sør-Afrika","Kina","Australia"],0,"Fra Andes, Peru."],
+ ["Potet","Hvordan kom poteten til Europa?",["Spanierne tok den med fra Sør-Amerika","Kineserne tok den med til Italia","Vikingene","Portugiserne fra Afrika"],0,"Første halvdel av 1500-tallet."],
+ ["Potet","Når kom poteten til Norge (gjennombrudd)?",["Ca. 1750","Ca. 1500","Ca. 1880","Ca. 1950"],0,"Sild og poteter ble hverdagskost rundt 1750."],
+ ["Potet","Hvorfor ble poteten brukt som sjømannskost?",["C-vitaminet beskyttet mot skjørbuk","Den var søt","Den inneholdt mye fett","Den var rask å koke"],0,"C-vitamin sikret mot skjørbuk."],
+ ["Potet","Hvilket stoff gjør grønne poteter giftige?",["Solanin","Klorofyll","Stivelse","Kalium"],0,"Klorofyll er ufarlig, men solanin er giftig."],
+ ["Potet","Hvordan lagrer du poteter best?",["Mørkt og kjølig","Lyst og varmt","I solen","Vasket i lang tid"],0,"Mørkt og kjølig (ca. 4 grader). Uvaskede holder best."],
+ ["Potet","Hvorfor bør du spise poteten med skall?",["Næringsstoffene sitter i og rett under skallet","Skallet gir mye fett","Det smaker søtt","Det er ikke noe poeng"],0,"Du får i deg ekstra næring."],
+ ["Potet","Hva skjedde i Irland i 1845?",["Potetavlingen råtnet og mange døde av sult","Poteten ble oppdaget","Poteten ble forbudt","Stor potetfest"],0,"Minst 1 million døde."],
+ ["Hygiene og oppvask","Hva er krysskontaminering?",["Bakterier flyttes fra rå til ferdig mat","Å blande krydder","Å fryse mat to ganger","Å koke to retter samtidig"],0,"Bruk egne brett og kniver for rått kjøtt. (Generell kunnskap.)"],
+ ["Hygiene og oppvask","Når må du vaske hendene?",["Etter å ha rørt rått kjøtt, fisk eller egg","Aldri","Bare etter måltidet","Bare hvis de ser skitne ut"],0,"Også før matlaging og etter toalett. (Generell kunnskap.)"]
+];
+
+var SHEET = [
+ ["Vitaminer (vitaminarket)",
+  ["Vitamin","Oppgaver","Kilder"],
+  [["A (fettløselig)","Celledeling, syn, hud og slimhinner","Leverpostei, smør/margarin, tran, sterkt fargede grønnsaker"],
+   ["D (fettløselig)","Kalsium i blodet, opptak fra tarmen, lagres i skjelettet","Fet fisk, smør/margarin, tran"],
+   ["E (fettløselig)","Beskytter cellene, friskt hjerte og blodårer","Planteoljer, nøtter, tran, havre, fet fisk, margarin"],
+   ["K (fettløselig)","Blodet koagulerer, skjelett, hjerte og blodårer","Mørkegrønne bladgrønnsaker, leverpostei, belgvekster"],
+   ["B-gruppen (vannløselig)","Bygge opp celler, energi","Nesten alle matvarer"],
+   ["C (vannløselig)","Beskytter celler, jernopptak, bindevev","Frukt, bær, grønnsaker, poteter, juice"]]],
+ ["Mineraler (vitaminarket)",
+  ["Mineral","Oppgaver","Kilder"],
+  [["Kalsium","Harde skjelett og tenner, nerver, muskler, blodtrykk","Melk og meieri, grønne bladgrønnsaker, mandler, sardiner"],
+   ["Fosfor","Skjelett, frakte fett, cellemembran","Melk og meieri, grove kornprodukter, kjøtt"],
+   ["Kalium","Muskler, pH-verdi, væskemengde","Frukt, grønnsaker, korn"],
+   ["Natrium","Væskebalanse sammen med kalium","Salt, brød, spekemat, chips, ferdigmat"],
+   ["Magnesium","Muskler og nerver, karbohydrater som energi","Korn, grønnsaker, poteter, melk, kjøtt, nøtter"]]],
+ ["Sporstoffer (vitaminarket)",
+  ["Sporstoff","Oppgaver","Kilder"],
+  [["Jern","Frakter oksygen til cellene","Rødt kjøtt, leverpostei, grove korn, mørkegrønt, linfrø"],
+   ["Jod","Hormoner i skjoldbruskkjertelen","Melk og meieri, mager fisk fra havet, sjømat"],
+   ["Sink","Sår gror, immunforsvar, smakssans","Melk og meieri, kjøtt, egg, belgvekster"],
+   ["Selen","Samarbeider med vitamin E","Saltvannsfisk, skalldyr, lever, erter, kjøtt"]]],
+ ["Typer fett (teoriøkt 2)",
+  ["Type","Egenskap","Eksempler"],
+  [["Mettet","Usunt, hardt i kjøleskapet","Ost, melk, smør, gris"],
+   ["Enumettet","Litt mer sunt, mykt i kjøleskapet","Fisk, oliven, myk plantemargarin"],
+   ["Flerumettet","Best, omega-3, flytende i kjøleskapet","Fet fisk, nøtter, solsikkeolje, soyaolje"]]],
+ ["Livsstilssykdommer (teoriøkt 3)",
+  ["Sykdom","Kort om","Forebygging"],
+  [["Diabetes type 2","For lite insulin, høyt blodsukker. Skyldes ofte kosthold og inaktivitet.","Sunt kosthold, mosjon, slanking ved overvekt"],
+   ["Hjerte- og karsykdom","Infarkt, slag, blodpropp, åreforkalkning","Mindre mettet fett og salt, ikke røyk, moderat mosjon"],
+   ["Kreft","Celler deler seg ukontrollert","Fiber, mindre fett, tidlig oppdagelse"]]]
+];
+
+/* ---------- HELPERS ---------- */
+function $(id){return document.getElementById(id)}
+var store={get:function(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
+ set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+
+/* ---------- TABS ---------- */
+function showTab(name){
+  document.querySelectorAll("nav button").forEach(function(b){b.setAttribute("aria-selected",b.dataset.tab===name)});
+  document.querySelectorAll(".panel").forEach(function(p){p.classList.toggle("on",p.id===name)});
+  window.scrollTo(0,0);
+}
+document.querySelectorAll("nav button").forEach(function(b){b.onclick=function(){showTab(b.dataset.tab)}});
+
+/* ---------- SJEKKLISTE ---------- */
+var done=store.get("t46_done",{});
+function renderCheck(){
+  var h="",n=0;
+  CHECKLIST.forEach(function(c,i){
+    var on=!!done[i];if(on)n++;
+    h+='<label class="check"><input type="checkbox" data-i="'+i+'"'+(on?" checked":"")+'><span>'+esc(c[0])+(c[1]?"<small>"+esc(c[1])+"</small>":"")+'</span></label>';
+  });
+  $("sjekkList").innerHTML=h;
+  $("sjekkCount").textContent=n+" av "+CHECKLIST.length+" punkter klare";
+  $("sjekkBar").style.width=(n/CHECKLIST.length*100)+"%";
+  $("sjekkList").querySelectorAll("input").forEach(function(cb){cb.onchange=function(){done[cb.dataset.i]=cb.checked;store.set("t46_done",done);renderCheck()}});
+}
+$("sjekkReset").onclick=function(){done={};store.set("t46_done",done);renderCheck()};
+renderCheck();
+
+/* ---------- KORT ---------- */
+var topics=["Alle"];CARDS.forEach(function(c){if(topics.indexOf(c[0])<0)topics.push(c[0])});
+$("deck").innerHTML=topics.map(function(t){return '<option>'+esc(t)+'</option>'}).join("");
+var known=store.get("t46_known",{});
+var deck=[],pos=0,flipped=false,onlyWeak=false;
+function buildDeck(){
+  var t=$("deck").value;
+  deck=CARDS.map(function(c,i){return {c:c,i:i}}).filter(function(o){
+    return (t==="Alle"||o.c[0]===t)&&(!onlyWeak||!known[o.i]);
+  });
+  pos=0;flipped=false;renderCard();
+}
+function renderCard(){
+  var f=$("flash");
+  if(!deck.length){f.className="flash";f.innerHTML='<div class="q">Ingen kort her.</div><div class="a" style="margin-top:8px">Du har merket alle kortene i dette temaet som «Kan». Bra jobba!</div>';$("kortCount").textContent="0 kort";return}
+  var o=deck[pos];
+  $("kortCount").textContent="Kort "+(pos+1)+" av "+deck.length+" · kan: "+deck.filter(function(x){return known[x.i]}).length;
+  f.className="flash"+(flipped?" back":"");
+  f.innerHTML='<span class="tag">'+esc(o.c[0])+'</span>'+(flipped?'<div class="a">'+esc(o.c[2])+'</div><div class="src">Kilde: '+esc(o.c[3])+'</div>':'<div class="q">'+esc(o.c[1])+'</div>');
+}
+function move(d){if(!deck.length)return;pos=(pos+d+deck.length)%deck.length;flipped=false;renderCard()}
+$("flash").onclick=function(){if(deck.length){flipped=!flipped;renderCard()}};
+$("kNext").onclick=function(){move(1)};
+$("kPrev").onclick=function(){move(-1)};
+$("kShuffle").onclick=function(){deck=shuffle(deck);pos=0;flipped=false;renderCard()};
+$("kOnlyWeak").onclick=function(){onlyWeak=!onlyWeak;$("kOnlyWeak").textContent=onlyWeak?"Vis alle":"Bare de jeg ikke kan";buildDeck()};
+function mark(v){if(!deck.length)return;known[deck[pos].i]=v;store.set("t46_known",known);if(onlyWeak&&v){deck.splice(pos,1);if(pos>=deck.length)pos=0;flipped=false;renderCard()}else move(1)}
+$("kGood").onclick=function(){mark(true)};
+$("kBad").onclick=function(){mark(false)};
+$("deck").onchange=buildDeck;
+buildDeck();
+
+/* ---------- QUIZ ---------- */
+var qs=[],qi=0,score=0,answered=false,wrong=[];
+function startQuiz(list){
+  qs=shuffle(list).map(function(q){
+    var idx=shuffle([0,1,2,3]);
+    return {t:q[0],q:q[1],o:idx.map(function(k){return q[2][k]}),a:idx.indexOf(q[3]),e:q[4]};
+  });
+  qi=0;score=0;wrong=[];renderQ();
+}
+var quizTopics=["Alle"];QUIZ.forEach(function(q){if(quizTopics.indexOf(q[0])<0)quizTopics.push(q[0])});
+function startScreen(){
+  $("quizBox").innerHTML='<div class="card"><h2 style="font-size:1.4rem">Quiz</h2><p>'+QUIZ.length+' spørsmål med flervalg. Velg tema, eller ta alle.</p><div class="row"><select id="qTopic" aria-label="Tema">'+quizTopics.map(function(t){return "<option>"+esc(t)+"</option>"}).join("")+'</select></div><button class="btn" id="qStart">Start quiz</button></div>';
+  $("qStart").onclick=function(){var t=$("qTopic").value;startQuiz(QUIZ.filter(function(q){return t==="Alle"||q[0]===t}))};
+}
+function renderQ(){
+  if(qi>=qs.length){return finish()}
+  var q=qs[qi];answered=false;
+  var h='<div class="card"><div class="count">Spørsmål '+(qi+1)+' av '+qs.length+' · riktige: '+score+'</div><div class="bar"><i style="width:'+(qi/qs.length*100)+'%"></i></div><div class="q-title">'+esc(q.q)+'</div>';
+  q.o.forEach(function(o,i){h+='<button class="opt" data-i="'+i+'">'+esc(o)+'</button>'});
+  h+='<div id="fb"></div></div>';
+  $("quizBox").innerHTML=h;
+  $("quizBox").querySelectorAll(".opt").forEach(function(b){b.onclick=function(){pick(+b.dataset.i)}});
+}
+function pick(i){
+  if(answered)return;answered=true;
+  var q=qs[qi],ok=i===q.a;
+  if(ok)score++;else wrong.push(q);
+  $("quizBox").querySelectorAll(".opt").forEach(function(b,k){
+    b.disabled=true;
+    if(k===q.a)b.classList.add("ok");
+    else if(k===i)b.classList.add("no");
+  });
+  $("fb").innerHTML='<div class="expl"><strong>'+(ok?"Riktig!":"Ikke helt.")+'</strong> '+esc(q.e)+'</div><div class="row" style="margin-top:14px"><button class="btn" id="qNext">'+(qi+1<qs.length?"Neste spørsmål":"Se resultat")+'</button></div>';
+  $("qNext").onclick=function(){qi++;renderQ()};
+  $("qNext").focus();
+}
+function finish(){
+  var pct=Math.round(score/qs.length*100);
+  var msg=pct>=85?"Du er godt forberedt.":pct>=60?"Bra, men øv litt mer på de du bommet på.":"Gå gjennom kortene og prøv igjen.";
+  var h='<div class="card"><h2 style="font-size:1.4rem">Resultat</h2><div class="big">'+score+' / '+qs.length+'</div><p>'+msg+'</p><div class="row">';
+  h+='<button class="btn" id="qAgain">Ny quiz</button>';
+  if(wrong.length)h+='<button class="btn alt" id="qWrong">Øv på de '+wrong.length+' jeg bommet på</button>';
+  h+='</div></div>';
+  $("quizBox").innerHTML=h;
+  $("qAgain").onclick=startScreen;
+  if(wrong.length)$("qWrong").onclick=function(){
+    var set=wrong.map(function(w){return [w.t,w.q,w.o,w.a,w.e]});
+    startQuiz(set);
+  };
+}
+startScreen();
+
+/* ---------- OVERSIKT ---------- */
+var sh="";
+SHEET.forEach(function(s){
+  sh+="<h3>"+esc(s[0])+'</h3><div class="scroll"><table><thead><tr>'+s[1].map(function(c){return "<th>"+esc(c)+"</th>"}).join("")+"</tr></thead><tbody>";
+  s[2].forEach(function(r){sh+="<tr>"+r.map(function(c){return "<td>"+esc(c)+"</td>"}).join("")+"</tr>"});
+  sh+="</tbody></table></div>";
+});
+sh+="<h3>Energi (teoriøkt 2)</h3><ul><li>Karbohydrat 4 kcal/g, protein 4 kcal/g, fett 9 kcal/g. 1 kcal = 4,2 kJ.</li><li>Gutter 14 til 17 år ca. 2900 kcal, jenter ca. 2300 kcal per dag.</li><li>25 til 35 prosent av energien bør komme fra fett.</li></ul>";
+sh+="<h3>Kostrådene 2024</h3><ol><li>Variert kosthold, mest fra planteriket, spis med glede.</li><li>Frukt, bær eller grønnsaker i alle måltider.</li><li>Grovt brød eller fullkorn i flere måltider hver dag.</li><li>Fisk, sjømat, bønner og linser oftere enn rødt kjøtt. Minst mulig bearbeidet kjøtt.</li><li>Daglig melk og meieriprodukter med mindre fett.</li><li>Begrens godteri, snacks og søte bakevarer.</li><li>Drikk vann!</li></ol>";
+sh+="<h3>Potet (PP)</h3><ul><li>Fra Sør-Amerika, Peru. Til Spania på 1500-tallet. Gjennombrudd i Norge ca. 1750.</li><li>Rik på stivelse og kalium. Næringen sitter i og under skallet.</li><li>Grønne poteter inneholder solanin og skal ikke spises. Lagres mørkt og kjølig.</li></ul>";
+$("sheet").innerHTML=sh;
+</script>
+</body>
+</html>
